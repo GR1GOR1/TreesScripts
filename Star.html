@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScriptsBuilder</title>
+    <link rel="stylesheet" href="styles.css">  
+    <link rel="stylesheet" href="showDialog.css">  
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body style="background-color: beige;">
+<br>
+
+<div class="ClassicWay"><br><a href="index.html">Главная</a></div>
+
+<table>
+<tr>
+<td>
+    <div class = "CreateFork" style="margin-top: 5%;"><button class =  "SaveDBButton" id = "BtnSaveDB" onclick="getid(this)">Сохранить</button></div>
+</td>
+</tr>
+</table>
+    <div class = "MainMap" id="ZeroMap">
+        <div class="BackConstr"></div>
+        <table>
+            <tr style = "display: initial;">
+                <td>
+                    <div class = "CreateBlock" style="margin-top: 5%;"><button class = "AddBlock" id = "BtnStart" onclick="getid(this)">Create block</button></div>
+                </td>
+                <td>
+                    <div class = "CreateFork" style="margin-top: 5.4%;"><button class = "AddFork" id = "BtnForkStart" onclick="getid(this)">Create fork</button></div>
+                </td>
+            </tr> 
+        </table>
+        <div class = "BlockOut" id = "0"></div>
+        <div class = "EndScriptBlock" id = "EndScript">
+            <div class = "CreateBlock" ><button class = "AddBlock" id = "BtnEnd" onclick="getid(this)">Block</button></div>
+            <div class = "CreateFork" ><button class = "AddFork" id = "BtnForkEnd" onclick="getid(this)">Fork</button></div>
+            <div class = "CreateFork" ><button class = "AddBridge" id = "BtnBridgeEnd" onclick="getid(this)">Bridge</button></div>
+        </div>
+    </div> 
+
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="showDialog.js"></script>
+<script src="scripts.js"></script>
+<script>
+
+    data =  '<?=$data?>';
+
+    data = $.parseJSON(data);
+    //console.log(data); 
+
+    var StartElem;
+    for (var i = 0; i < data.length; i++) {
+        var RRow = data[i];
+        if (RRow[3] == "BtnStart" || RRow[3] == "BtnForkStart") {
+            StartElem = RRow;
+        }
+    }
+    console.log(StartElem);
+
+    CreateTree(data);
+</script>
+</body>
+</html>
